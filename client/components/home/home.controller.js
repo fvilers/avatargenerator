@@ -5,7 +5,10 @@ function homeController () {
 
   ctrl.generate = generate;
 
-  function generate () {
+  function generate (valid) {
+    if (!valid) {
+      return;
+    }
   }
 }
 
