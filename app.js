@@ -15,7 +15,7 @@ app.use(helmet());
 app.use(ensureSsl, favicon(path.join(root, "favicon.ico"))); 
 app.use(ensureSsl, express.static(root));
 app.all("*", ensureSsl, (req, res) => {
-  res.sendStatus(404);
+  res.status(404).sendFile("404.html", { root: __dirname });
 });
 
 module.exports = app;
