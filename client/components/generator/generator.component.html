@@ -1,6 +1,6 @@
 <form name="generator" novalidate ng-submit="$ctrl.generate(generator.$valid)">
   <div class="form-group" ng-class="{'has-error': (generator.$submitted || generator.name.$touched) && generator.name.$invalid}">
-    <label for="name" class="control-label">Enter your name:</label>
+    <label for="name" class="control-label">Enter your name</label>
     <input id="name" name="name" type="text" class="form-control" required placeholder="Bill Gates, Steve Jobs,..." ng-model="$ctrl.name">
     <div class="text-danger" ng-messages="generator.name.$error" ng-show="generator.$submitted || generator.name.$touched">
       <div ng-message="required">Please enter a value for this field.</div>
