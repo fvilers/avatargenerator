@@ -2,6 +2,9 @@
   "name": "avatar-generator",
   "version": "1.0.0",
   "private": true,
+    "scripts": {
+    "start": "node ./bin/www"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/fvilers/avatar-generator.git"
@@ -9,5 +12,8 @@
   "bugs": {
     "url": "https://gitlab.com/fvilers/avatar-generator/issues"
   },
-  "homepage": "https://gitlab.com/fvilers/avatar-generator#README"
+  "homepage": "https://gitlab.com/fvilers/avatar-generator#README",
+  "dependencies": {
+    "express": "4.14.0"
+  }
 }
