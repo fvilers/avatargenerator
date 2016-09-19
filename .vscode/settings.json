@@ -1,6 +1,7 @@
 {
   "files.exclude": {
     "npm-debug.log*": true,
-    "node_modules": true
+    "node_modules": true,
+    "public/bundle": true
   }
 }
