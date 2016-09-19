@@ -6,6 +6,6 @@ const app = angular.module("app", [
 ]);
 
 // Components
-app.component("appHome", require("./components/home"));
+app.component("appGenerator", require("./components/generator"));
 
 module.exports = app.name;
