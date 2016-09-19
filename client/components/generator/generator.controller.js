@@ -21,7 +21,7 @@ function generatorController () {
 
     ctrl.context.fillStyle = ctrl.colours[colourIndex];
     ctrl.context.fillRect (0, 0, ctrl.canvas.width, ctrl.canvas.height);
-    ctrl.context.font = "128px Arial";
+    ctrl.context.font = "128px Open Sans";
     ctrl.context.textAlign = "center";
     ctrl.context.fillStyle = "#FFF";
     ctrl.context.fillText(initials, ctrl.canvasCssWidth / 2, ctrl.canvasCssHeight / 1.5);
