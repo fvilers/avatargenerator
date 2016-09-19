@@ -1,7 +1,7 @@
 <form name="generator" novalidate ng-submit="$ctrl.generate(generator.$valid)">
   <div>
-    <label for="name">name</label>
-    <input id="name" name="name" type="text" required ng-model="$ctrl.name">
+    <label for="name">Enter your name:</label>
+    <input id="name" name="name" type="text" required placeholder="Bill Gates, Steve Jobs,..." ng-model="$ctrl.name">
     <div ng-messages="generator.name.$error" ng-show="generator.$submitted || generator.name.$touched">
       <div ng-message="required">Please enter a value for this field.</div>
     </div>
@@ -14,4 +14,8 @@
 
 <div>
   <canvas id="avatar" width="256" height="256"></canvas>
+</div>
+
+<div ng-if="$ctrl.generated">
+  <button type="button" ng-click="$ctrl.download()">Download</button>
 </div>

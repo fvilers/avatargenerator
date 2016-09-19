@@ -5,6 +5,7 @@ function generatorController () {
 
   ctrl.colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
   ctrl.generate = generate;
+  ctrl.download = download;
   ctrl.$onInit = initialize;
 
   function generate (valid) {
@@ -23,6 +24,12 @@ function generatorController () {
     ctrl.context.textAlign = "center";
     ctrl.context.fillStyle = "#FFF";
     ctrl.context.fillText(initials, ctrl.canvasCssWidth / 2, ctrl.canvasCssHeight / 1.5);
+
+    ctrl.generated = true;
+  }
+
+  function download () {
+    window.location = ctrl.canvas.toDataURL("image/png");
   }
 
   function initialize () {
