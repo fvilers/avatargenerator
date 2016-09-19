@@ -1,12 +1,9 @@
-<h2>Home</h2>
-
 <form name="generator" novalidate ng-submit="$ctrl.generate(generator.$valid)">
   <div>
-    <label for="initials">Initials</label>
-    <input id="initials" name="initials" type="text" required maxlength="2" ng-model="$ctrl.initials">
-    <div ng-messages="generator.initials.$error" ng-show="generator.$submitted || generator.initials.$touched">
+    <label for="name">name</label>
+    <input id="name" name="name" type="text" required ng-model="$ctrl.name">
+    <div ng-messages="generator.name.$error" ng-show="generator.$submitted || generator.name.$touched">
       <div ng-message="required">Please enter a value for this field.</div>
-      <div ng-message="maxlength">This field can be at most 2 characters long.</div>
     </div>
   </div>
 
@@ -14,3 +11,7 @@
     <button type="submit">Generate</button>
   </div>
 </form>
+
+<div>
+  <canvas id="avatar" width="256" height="256"></canvas>
+</div>
