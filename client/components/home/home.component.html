@@ -1,1 +1,12 @@
 <h2>Home</h2>
+
+<form name="generator" ng-submit="$ctrl.generate()">
+  <div>
+    <label for="initials">Initials</label>
+    <input id="initials" name="initials" type="text" ng-model="$ctrl.initials">
+  </div>
+
+  <div>
+    <button type="submit">Generate</button>
+  </div>
+</form>
