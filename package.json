@@ -1,0 +1,13 @@
+{
+  "name": "avatar-generator",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/fvilers/avatar-generator.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/fvilers/avatar-generator/issues"
+  },
+  "homepage": "https://gitlab.com/fvilers/avatar-generator#README"
+}
