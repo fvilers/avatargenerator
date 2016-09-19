@@ -1,21 +1,18 @@
 <form name="generator" novalidate ng-submit="$ctrl.generate(generator.$valid)">
-  <div>
-    <label for="name">Enter your name:</label>
-    <input id="name" name="name" type="text" required placeholder="Bill Gates, Steve Jobs,..." ng-model="$ctrl.name">
-    <div ng-messages="generator.name.$error" ng-show="generator.$submitted || generator.name.$touched">
+  <div class="form-group" ng-class="{'has-error': (generator.$submitted || generator.name.$touched) && generator.name.$invalid}">
+    <label for="name" class="control-label">Enter your name:</label>
+    <input id="name" name="name" type="text" class="form-control" required placeholder="Bill Gates, Steve Jobs,..." ng-model="$ctrl.name">
+    <div class="text-danger" ng-messages="generator.name.$error" ng-show="generator.$submitted || generator.name.$touched">
       <div ng-message="required">Please enter a value for this field.</div>
     </div>
   </div>
 
   <div>
-    <button type="submit">Generate</button>
+    <button type="submit" class="btn btn-primary">Generate</button>
   </div>
 </form>
 
-<div>
-  <canvas id="avatar" width="256" height="256"></canvas>
-</div>
-
-<div ng-if="$ctrl.generated">
-  <button type="button" ng-click="$ctrl.download()">Download</button>
+<div ng-show="$ctrl.generated">
+  <canvas id="avatar" width="256" height="256" class="thumbnail"></canvas>
+  <button type="button" class="btn btn-primary" ng-click="$ctrl.download()">Download</button>
 </div>
