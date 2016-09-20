@@ -5,8 +5,13 @@ function downloadCanvasController ($window, $timeout) {
   const canvas = $window.document.getElementById(ctrl.canvas);
 
   ctrl.download = download;
+  ctrl.$onInit = initialize;
 
   function download () {
+    if (ctrl.isEdge) {
+      return;
+    }
+    
     const url = canvas.toDataURL("image/png");
     const a = $window.document.createElement("a");
 
@@ -20,6 +25,12 @@ function downloadCanvasController ($window, $timeout) {
       $window.URL.revokeObjectURL(url);
       $window.document.body.removeChild(a);
     }, 500);
+  }
+
+  function initialize () {
+    const isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+    ctrl.isEdge = !isIE && !!window.StyleMedia;
   }
 }
 

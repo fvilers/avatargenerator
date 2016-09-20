@@ -1,1 +1,5 @@
-<button class="btn btn-primary" ng-click="$ctrl.download()">Download</button>
+<div class="alert alert-danger" ng-show="$ctrl.isEdge">
+  Sorry, but for security reasons, download on Microsoft Edge is not (yet) supported.
+</div>
+
+<button class="btn btn-primary" ng-click="$ctrl.download()" ng-disabled="$ctrl.isEdge">Download</button>
