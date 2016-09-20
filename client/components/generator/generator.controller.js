@@ -51,6 +51,7 @@ function generatorController () {
   function reset (form) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     ctrl.name = null;
+    ctrl.shape = null;
     ctrl.generated = false;
     form.$setPristine();
   }
