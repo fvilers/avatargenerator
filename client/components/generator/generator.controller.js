@@ -2,6 +2,10 @@
 
 function generatorController () {
   const ctrl = this;
+  const canvas = document.getElementById("avatar");
+  const context = canvas.getContext("2d");
+  const canvasWidth = canvas.width;
+  const canvasHeight = canvas.height; 
 
   ctrl.shapes = [{ value: "square", name: "Square" }, { value: "circle", name: "Circle" }];
   ctrl.colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
@@ -20,56 +24,51 @@ function generatorController () {
       charIndex = initials.charCodeAt(0) - 65,
       colourIndex = charIndex % 19;
     
-    ctrl.context.clearRect(0, 0, ctrl.canvas.width, ctrl.canvas.height);
-    ctrl.context.fillStyle = ctrl.colours[colourIndex];
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = ctrl.colours[colourIndex];
 
     if (ctrl.shape === "square") {
-      ctrl.context.fillRect (0, 0, ctrl.canvas.width, ctrl.canvas.height);  
+      context.fillRect (0, 0, canvas.width, canvas.height);  
     }
     else if (ctrl.shape === "circle") {
-      var centerX = ctrl.canvas.width / 2;
-      var centerY = ctrl.canvas.height / 2;
-      var radius = ctrl.canvas.width / 2;
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = canvas.width / 2;
 
-      ctrl.context.beginPath();
-      ctrl.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-      ctrl.context.fill();
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fill();
     }
     
-    ctrl.context.font = "128px Open Sans";
-    ctrl.context.textAlign = "center";
-    ctrl.context.fillStyle = "#FFF";
-    ctrl.context.fillText(initials, ctrl.canvasCssWidth / 2, ctrl.canvasCssHeight / 1.5);
+    context.font = "128px Open Sans";
+    context.textAlign = "center";
+    context.fillStyle = "#FFF";
+    context.fillText(initials, canvasWidth / 2, canvasHeight / 1.5);
 
     ctrl.generated = true;
   }
 
   function reset (form) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     ctrl.name = null;
     ctrl.generated = false;
     form.$setPristine();
   }
 
   function download () {
-    window.location = ctrl.canvas.toDataURL("image/png");
+    window.location = canvas.toDataURL("image/png");
   }
 
   function initialize () {
-    ctrl.canvas = document.getElementById("avatar");
-    ctrl.context = ctrl.canvas.getContext("2d");
-
-    const canvasWidth = ctrl.canvas.width,
-      canvasHeight = ctrl.canvas.height;
-
-    ctrl.canvasCssWidth = canvasWidth;
-    ctrl.canvasCssHeight = canvasHeight;
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
 
     if (window.devicePixelRatio) {
-      ctrl.canvas.width = canvasWidth * window.devicePixelRatio;
-      ctrl.canvas.height = canvasHeight * window.devicePixelRatio;
-      ctrl.canvas.style.width = ctrl.canvasCssWidth;
-      ctrl.canvas.style.height = ctrl.canvasCssHeight;
-      ctrl.context.scale(window.devicePixelRatio, window.devicePixelRatio);
+      canvas.width = canvasWidth * window.devicePixelRatio;
+      canvas.height = canvasHeight * window.devicePixelRatio;
+      canvas.style.width = canvasWidth;
+      canvas.style.height = canvasHeight;
+      context.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
   }
 }
