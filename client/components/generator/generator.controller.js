@@ -15,7 +15,7 @@ function generatorController () {
     }
 
     const nameSplit = ctrl.name.split(" "),
-      initials = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase(),
+      initials = nameSplit[0].charAt(0).toUpperCase() + (nameSplit.length > 1 ? nameSplit[1].charAt(0).toUpperCase() : ""),
       charIndex = initials.charCodeAt(0) - 65,
       colourIndex = charIndex % 19;
 
