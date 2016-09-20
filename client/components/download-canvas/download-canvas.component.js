@@ -2,7 +2,8 @@
 
 const component = {
   bindings: {
-    canvas: "@"
+    canvas: "@",
+    initials: "<"
   },
   controller: require("./download-canvas.controller"),
   template: require("ng-cache!./download-canvas.component.html")

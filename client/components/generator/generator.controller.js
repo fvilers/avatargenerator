@@ -19,9 +19,9 @@ function generatorController () {
       return;
     }
 
-    const nameSplit = ctrl.name.split(" "),
-      initials = nameSplit[0].charAt(0).toUpperCase() + (nameSplit.length > 1 ? nameSplit[1].charAt(0).toUpperCase() : ""),
-      charIndex = initials.charCodeAt(0) - 65,
+    const nameSplit = ctrl.name.split(" ");
+    ctrl.initials = nameSplit[0].charAt(0).toUpperCase() + (nameSplit.length > 1 ? nameSplit[1].charAt(0).toUpperCase() : "");
+    const charIndex = ctrl.initials.charCodeAt(0) - 65,
       colourIndex = charIndex % 19;
     
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -43,7 +43,7 @@ function generatorController () {
     context.font = "128px Open Sans";
     context.textAlign = "center";
     context.fillStyle = "#FFF";
-    context.fillText(initials, canvasWidth / 2, canvasHeight / 1.5);
+    context.fillText(ctrl.initials, canvasWidth / 2, canvasHeight / 1.5);
 
     ctrl.generated = true;
   }

@@ -1,16 +1,30 @@
 "use strict";
 
-function downloadCanvasController () {
+function downloadCanvasController ($window, $timeout) {
   const ctrl = this;
-  const canvas = document.getElementById(ctrl.canvas);
+  const canvas = $window.document.getElementById(ctrl.canvas);
 
   ctrl.download = download;
 
   function download () {
-    window.location = canvas.toDataURL("image/png");
+    const url = canvas.toDataURL("image/png");
+    const a = $window.document.createElement("a");
+
+    $window.document.body.appendChild(a);
+    a.style.cssText = "display: none";
+    a.href = url;
+    a.download = `${ctrl.initials}.png`;
+    a.click();
+
+    $timeout(() => {
+      $window.URL.revokeObjectURL(url);
+      $window.document.body.removeChild(a);
+    }, 500);
   }
 }
 
 module.exports = [
+  "$window",
+  "$timeout",
   downloadCanvasController
 ];
