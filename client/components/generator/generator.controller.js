@@ -6,6 +6,7 @@ function generatorController () {
   const context = canvas.getContext("2d");
   const canvasWidth = canvas.width;
   const canvasHeight = canvas.height; 
+  let ratio = 1;
 
   ctrl.shapes = [{ value: "square", name: "Square" }, { value: "circle", name: "Circle" }];
   ctrl.colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
@@ -31,9 +32,9 @@ function generatorController () {
       context.fillRect (0, 0, canvas.width, canvas.height);  
     }
     else if (ctrl.shape === "circle") {
-      var centerX = canvas.width / 2;
-      var centerY = canvas.height / 2;
-      var radius = canvas.width / 2;
+      var centerX = canvas.width / ratio / 2;
+      var centerY = canvas.height / ratio / 2;
+      var radius = canvas.width / ratio / 2;
 
       context.beginPath();
       context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
@@ -63,13 +64,24 @@ function generatorController () {
   function initialize () {
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
+    const devicePixelRatio = window.devicePixelRatio || 1,
+      backingStoreRatio = context.webkitBackingStorePixelRatio ||
+      context.mozBackingStorePixelRatio ||
+      context.msBackingStorePixelRatio ||
+      context.oBackingStorePixelRatio ||
+      context.backingStorePixelRatio || 1
+    ;
 
-    if (window.devicePixelRatio) {
-      canvas.width = canvasWidth * window.devicePixelRatio;
-      canvas.height = canvasHeight * window.devicePixelRatio;
-      canvas.style.width = canvasWidth;
-      canvas.style.height = canvasHeight;
-      context.scale(window.devicePixelRatio, window.devicePixelRatio);
+    ratio = devicePixelRatio / backingStoreRatio;
+
+    if (devicePixelRatio !== backingStoreRatio) {
+      canvas.width = canvasWidth * ratio;
+      canvas.height = canvasHeight * ratio;
+
+      canvas.style.width = canvasWidth + "px";
+      canvas.style.height = canvasHeight + "px";
+
+      context.scale(ratio, ratio);
     }
   }
 }
