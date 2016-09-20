@@ -3,6 +3,7 @@
 function generatorController () {
   const ctrl = this;
 
+  ctrl.shapes = [{ value: "square", name: "Square" }, { value: "circle", name: "Circle" }];
   ctrl.colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
   ctrl.generate = generate;
   ctrl.reset = reset;
@@ -18,9 +19,23 @@ function generatorController () {
       initials = nameSplit[0].charAt(0).toUpperCase() + (nameSplit.length > 1 ? nameSplit[1].charAt(0).toUpperCase() : ""),
       charIndex = initials.charCodeAt(0) - 65,
       colourIndex = charIndex % 19;
-
+    
+    ctrl.context.clearRect(0, 0, ctrl.canvas.width, ctrl.canvas.height);
     ctrl.context.fillStyle = ctrl.colours[colourIndex];
-    ctrl.context.fillRect (0, 0, ctrl.canvas.width, ctrl.canvas.height);
+
+    if (ctrl.shape === "square") {
+      ctrl.context.fillRect (0, 0, ctrl.canvas.width, ctrl.canvas.height);  
+    }
+    else if (ctrl.shape === "circle") {
+      var centerX = ctrl.canvas.width / 2;
+      var centerY = ctrl.canvas.height / 2;
+      var radius = ctrl.canvas.width / 2;
+
+      ctrl.context.beginPath();
+      ctrl.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      ctrl.context.fill();
+    }
+    
     ctrl.context.font = "128px Open Sans";
     ctrl.context.textAlign = "center";
     ctrl.context.fillStyle = "#FFF";
