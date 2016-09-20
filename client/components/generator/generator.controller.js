@@ -1,8 +1,8 @@
 "use strict";
 
-function generatorController () {
+function generatorController ($window) {
   const ctrl = this;
-  const canvas = document.getElementById("avatar");
+  const canvas = $window.document.getElementById("avatar");
   const context = canvas.getContext("2d");
   const canvasWidth = canvas.width;
   const canvasHeight = canvas.height; 
@@ -82,5 +82,6 @@ function generatorController () {
 }
 
 module.exports = [
+  "$window",
   generatorController
 ];
